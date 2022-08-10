@@ -6,7 +6,7 @@ class Category:
     
     def __repr__(self):
         title_length = 30 - len(self.budget_category)
-        # what happens if the length is an odd number -- you cant multiply by a float
+        # what happens if the length is an odd number, you cannot multiply with a float
         title_line = "*" * (title_length / 2)
         title = f'{title_line}{self.budget_category}{title_line}'
         print(title)
