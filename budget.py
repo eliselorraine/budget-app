@@ -6,12 +6,17 @@ class Category:
     
     def __repr__(self):
         title_length = 30 - len(self.budget_category)
-        # what happens if the length is an odd number, you cannot multiply with a float
-        title_line = "*" * (title_length / 2)
-        title = f'{title_line}{self.budget_category}{title_line}'
-        print(title)
+        if title_length % 2 == 0:
+            left = int(title_length / 2)
+            right = int(title_length / 2)
+        else:
+            left = int((title_length + 1) / 2)
+            right = int((title_length - 1) / 2)
+        left_stars = "*" * left
+        right_stars = "*" * right
+        title = f'{left_stars}{self.budget_category}{right_stars}'
         for x in range(len(self.ledger)):
-            return f"{self.ledger[x]['description']} {self.ledger[x]['amount']}"
+            print(f"{self.ledger[x]['description']} {self.ledger[x]['amount']}")
 
     def deposit(self, amount, description=""):
         self.funds = self.funds + amount
@@ -44,8 +49,9 @@ class Category:
 
     
 
-food = Category('Food')
+food = Category('Groceries')
 print(food)
 
 def create_spend_chart(categories):
     print('last method')
+
