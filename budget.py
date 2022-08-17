@@ -5,18 +5,20 @@ class Category:
         self.funds = 0
     
     def __repr__(self):
-        title_length = 30 - len(self.budget_category)
-        if title_length % 2 == 0:
-            left = int(title_length / 2)
-            right = int(title_length / 2)
-        else:
-            left = int((title_length + 1) / 2)
-            right = int((title_length - 1) / 2)
-        left_stars = "*" * left
-        right_stars = "*" * right
-        title = f'{left_stars}{self.budget_category}{right_stars}'
+        print_ledger = ""
+        title = self.budget_category.center(30, "*")
+        print_ledger = print_ledger + title + "\n"
         for x in range(len(self.ledger)):
-            print(f"{self.ledger[x]['description']} {self.ledger[x]['amount']}")
+            desc = self.ledger[x]['description']
+            desc = desc[0:23]
+            amount = str(self.ledger[x]['amount'])
+            cents = ".00"
+            if amount.find('.') == -1:
+                amount = amount + cents 
+            amount = amount[0:7]
+            line = "{:<23}{:>7}\n".format(desc, amount)
+            print_ledger = print_ledger + line
+        return print_ledger
 
     def deposit(self, amount, description=""):
         self.funds = self.funds + amount
