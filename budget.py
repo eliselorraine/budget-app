@@ -3,7 +3,7 @@ class Category:
         self.budget_category = budget_category
         self.ledger = list()
         self.funds = 0
-    
+
     def __repr__(self):
         print_ledger = ""
         title = self.budget_category.center(30, "*")
@@ -18,6 +18,7 @@ class Category:
             amount = amount[0:7]
             line = "{:<23}{:>7}\n".format(desc, amount)
             print_ledger = print_ledger + line
+        print_ledger = print_ledger + f"Total: {self.funds}"
         return print_ledger
 
     def deposit(self, amount, description=""):
